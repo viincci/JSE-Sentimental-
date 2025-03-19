@@ -1,0 +1,1 @@
+Static media files folder
