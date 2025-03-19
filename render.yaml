@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: jse-sentiment-analysis
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: NEWS_API_KEY
+        sync: false  # Add manually in Render dashboard
