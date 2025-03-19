@@ -16,11 +16,12 @@ app = Flask(__name__, template_folder="../templates", static_folder="../static")
 # Fetch JSE Top 40 Index data
 jse_index = "JSE.JO"
 data = yf.download(jse_index, period="7d", interval="1d")
+
+# Get API key from environment variables
 API_KEY = os.getenv("NEWS_API_KEY")
 
 # Fetch news data
 NEWS_API_URL = f"https://gnews.io/api/v4/search?q=JSE&lang=en&country=za&token={API_KEY}"
-#NEWS_API_URL = f"https://gnews.io/api/v4/search?q=JSE&lang=en&country=za&token={API_KEY}"
 response = requests.get(NEWS_API_URL)
 news_data = response.json()
 articles = news_data.get("articles", [])
