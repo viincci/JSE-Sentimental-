@@ -5,16 +5,22 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from transformers import pipeline
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
 
 # Fetch JSE Top 40 Index data
 jse_index = "JSE.JO"
 data = yf.download(jse_index, period="7d", interval="1d")
+API_KEY = os.getenv("NEWS_API_KEY")
 
 # Fetch news data
-API_KEY = "2fb47ea16b6bb959da60e5557ec25bdc"
 NEWS_API_URL = f"https://gnews.io/api/v4/search?q=JSE&lang=en&country=za&token={API_KEY}"
+#NEWS_API_URL = f"https://gnews.io/api/v4/search?q=JSE&lang=en&country=za&token={API_KEY}"
 response = requests.get(NEWS_API_URL)
 news_data = response.json()
 articles = news_data.get("articles", [])
