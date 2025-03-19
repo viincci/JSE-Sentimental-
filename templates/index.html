@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSE Sentiment Analysis</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        table { width: 80%; margin: 20px auto; border-collapse: collapse; }
+        th, td { border: 1px solid black; padding: 10px; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+    <h1>JSE News Sentiment Analysis</h1>
+    <img src="{{ url_for('static', filename='sentiment_plot.png') }}" width="500px">
+    <h2>News Sentiment Data</h2>
+    <table>
+        <tr>
+            <th>Headline</th>
+            <th>Sentiment</th>
+            <th>Score</th>
+        </tr>
+        {% for item in sentiment_data %}
+        <tr>
+            <td>{{ item.Headline }}</td>
+            <td>{{ item.Sentiment }}</td>
+            <td>{{ item.Score }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
